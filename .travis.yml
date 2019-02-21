@@ -10,7 +10,7 @@ script:
 
 after_success:
   - docker build -t wingrider/multi-client  ./client
-  - docker build -t wingrider/multi-ngnix  ./ngnix
+  - docker build -t wingrider/multi-nginx  ./nginx
   - docker build -t wingrider/multi-server  ./server
   - docker build -t wingrider/multi-worker  ./worker
 
