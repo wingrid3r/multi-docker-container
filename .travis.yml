@@ -19,6 +19,6 @@ after_success:
 
   #push to docker hub
   - docker push wingrider/multi-client
-  - docker push wingrider/multi-ngnix  ./ngnix
-  - docker push wingrider/multi-server  ./server
-  - docker push wingrider/multi-worker  ./worker
+  - docker push wingrider/multi-ngnix
+  - docker push wingrider/multi-server
+  - docker push wingrider/multi-worker
