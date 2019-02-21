@@ -9,16 +9,16 @@ script:
   - docker run wingrider/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t wingrider/multi-client  ./client
-  - docker build -t wingrider/multi-nginx  ./nginx
-  - docker build -t wingrider/multi-server  ./server
-  - docker build -t wingrider/multi-worker  ./worker
+  - docker build -t wingrider/multi-client ./client
+  - docker build -t wingrider/multi-nginx ./nginx
+  - docker build -t wingrider/multi-server ./server
+  - docker build -t wingrider/multi-worker ./worker
 
   #log in to docker hub
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
 
   #push to docker hub
   - docker push wingrider/multi-client
-  - docker push wingrider/multi-ngnix
+  - docker push wingrider/multi-nginx
   - docker push wingrider/multi-server
   - docker push wingrider/multi-worker
