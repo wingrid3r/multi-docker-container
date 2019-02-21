@@ -1,0 +1,24 @@
+sudo : required
+services:
+  - docker
+
+before_install:
+  - docker build -t wingrider/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run wingrider/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t wingrider/multi-client  ./client
+  - docker build -t wingrider/multi-ngnix  ./ngnix
+  - docker build -t wingrider/multi-server  ./server
+  - docker build -t wingrider/multi-worker  ./worker
+
+  #log in to docker hub
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  #push to docker hub
+  - docker push wingrider/multi-client
+  - docker push wingrider/multi-ngnix  ./ngnix
+  - docker push wingrider/multi-server  ./server
+  - docker push wingrider/multi-worker  ./worker
