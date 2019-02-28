@@ -1,0 +1,38 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client-container",
+      "image": "wingrider/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server-container",
+      "image": "wingrider/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker-container",
+      "image": "wingrider/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx-container",
+      "image": "wingrider/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappoings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "client-container", "worker-container"
+      ]
+    }
+  ]
+}
