@@ -34,7 +34,7 @@
         }
       ],
       "links": [
-        "client-container", "worker-container"
+        "client-container", "server-container"
       ],
       "memory": 128
     }
